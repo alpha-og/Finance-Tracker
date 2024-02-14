@@ -2,10 +2,15 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+<<<<<<< HEAD
     "dev": "nodemon server.ts"
+=======
+    "start": "tsc && node dist/src/server.ts",
+    "dev": "nodemon -exec 'ts-node' ./src/server.ts"
+>>>>>>> 444095b0edae678a68f95c550b9e6571213bf0f1
   },
   "keywords": [],
   "author": "",
@@ -13,11 +18,25 @@
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.11.17",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.0.1",
+    "eslint": "^8.56.0",
+    "nodemon": "^3.0.3",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
   "dependencies": {
+<<<<<<< HEAD
     "express": "^4.18.2",
     "nodemon": "^3.0.3",
     "ts-node": "^10.9.2"
+=======
+    "dotenv": "^16.4.4",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.2",
+    "next-auth": "^4.24.6",
+    "tailwindcss": "^3.4.1"
+>>>>>>> 444095b0edae678a68f95c550b9e6571213bf0f1
   }
 }
