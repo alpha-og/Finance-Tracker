@@ -4,6 +4,7 @@ const app = express();
 app.use(express.json());
 
 import dotenv from "dotenv";
+// import app from "./app";
 dotenv.config({ path: "./configs.env" });
 const { PORT } = process.env;
 
