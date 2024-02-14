@@ -1,12 +1,29 @@
 import express from "express";
-import { Transaction } from "../models/transaction";
+import transactionSchema from "../models/transaction";
 
-exports.transaction = async (
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
+exports.transaction_post = async (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
 ) => {
-    const data = new Transaction({
-        req.body,
+  const { amount, desc } = req.body;
+  console.log(amount, desc);
+  const data = new transactionSchema({
+    user: user,
+    amount: amount,
+    description: desc,
+  });
+  await data
+    .save()
+    .then(() => {
+      console.log("Transaction saved");
+      res.status(201).send("Transaction saved");
     })
+    .catch((error: Error) => {
+      res
+        .status(500)
+        .send("There was some error while saving the transaction " + error);
+    });
 };
+
+// export default { transaction_post };
