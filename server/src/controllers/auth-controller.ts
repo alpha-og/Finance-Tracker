@@ -8,7 +8,7 @@ const forgotPassword = async (
   res: express.Response,
 ) => {};
 
-export default {
+export {
   signup,
   signin,
   signout,
