@@ -35,7 +35,7 @@ const getTransactions = async (
   res: express.Response,
   next: express.NextFunction,
 ) => {
-  res.send("Hello world");
+  const { user_id } = req.body;
 };
 
 const getTransaction = async (
