@@ -7,15 +7,11 @@ const createTransaction = async (
   res: express.Response,
   next: express.NextFunction,
 ) => {
-  const { userId, amount, desc } = req.body;
+  const { user, amount, desc } = req.body;
   try {
-    const user = await User.findById(userId, (err: Error, docs: string) => {
-      if (err) {
-        res.status(500).send(err.message);
-      }
-    });
+    const user_ = await User.findById(user);
     const newTransaction = new transactionSchema({
-      user: userId,
+      user: user,
       amount: amount,
       description: desc,
     });
@@ -35,9 +31,9 @@ const getTransactions = async (
   res: express.Response,
   next: express.NextFunction,
 ) => {
-  const { userId } = req.body;
+  const { user } = req.body;
   try {
-    const transactions = await transactionSchema.find({ user: userId });
+    const transactions = await transactionSchema.find({ user: user });
     res.status(200).send(transactions);
   } catch (err) {
     if (err instanceof Error) res.status(500).send(err.message);
@@ -50,12 +46,9 @@ const getTransaction = async (
   res: express.Response,
   next: express.NextFunction,
 ) => {
-  const { userId, transId } = req.body;
+  const transId = req.params.id;
   try {
-    const transaction = await transactionSchema.findOne({
-      user: userId,
-      _id: transId,
-    });
+    const transaction = await transactionSchema.findById(transId);
     res.status(200).send(transaction);
   } catch (err) {
     if (err instanceof Error) res.status(500).send(err.message);
@@ -68,12 +61,12 @@ const deleteTransaction = async (
   res: express.Response,
   next: express.NextFunction,
 ) => {
-  const { userId, transId } = req.body;
+  const transId = req.body.id;
   try {
     const transaction = await transactionSchema.deleteOne({
-      user: userId,
       _id: transId,
     });
+    res.status(200).send("Transaction deleted");
   } catch (err) {
     if (err instanceof Error) res.status(500).send(err.message);
     res.status(500).send("Server error");
@@ -85,10 +78,10 @@ const updateTransaction = async (
   res: express.Response,
   next: express.NextFunction,
 ) => {
-  const { userId, amount, desc, transId } = req.body;
+  const { user, amount, desc, id } = req.body;
   try {
     const transaction = await transactionSchema.updateOne(
-      { _id: transId, user: userId },
+      { _id: id, user: user },
       { amount: amount, description: desc },
     );
     res.status(200).send("Updated successfully");
