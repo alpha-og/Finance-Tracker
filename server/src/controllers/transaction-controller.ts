@@ -1,5 +1,5 @@
 import express from "express";
-import transactionSchema from "../models/transaction";
+import transactionSchema from "../models/transaction-model";
 
 const createTransaction = async (
   req: express.Request,
@@ -26,4 +26,5 @@ const createTransaction = async (
     });
 };
 
-export { createTransaction};
+export { createTransaction };
+
