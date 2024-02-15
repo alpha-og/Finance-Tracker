@@ -1,7 +1,0 @@
-POST http://localhost:2000/data_trans
-Content-Type: application/json
-
-{
-    "amount": 1000,
-    "desc": "Dummy transaction"
-}
