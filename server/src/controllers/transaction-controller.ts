@@ -2,7 +2,7 @@ import express from "express";
 import transactionSchema from "../models/transaction";
 import User from "../models/user-model";
 
-exports.transaction_post = async (
+exports.transaction = async (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction,
@@ -25,5 +25,3 @@ exports.transaction_post = async (
     res.status(500).send("server error");
   }
 };
-
-// export default { transaction_post };
