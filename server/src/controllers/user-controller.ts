@@ -12,7 +12,11 @@ export const getUserById = async (req: Request, res: Response) => {
     }
     res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    let message = "Some error occurred while fetching user";
+    if (error instanceof Error) {
+      message = error.message;
+    }
+    res.status(500).json({ message });
   }
 };
 
@@ -29,7 +33,11 @@ export const createUser = async (req: Request, res: Response) => {
     await newUser.save();
     res.status(201).json(newUser);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    let message = "Some error occurred while creating user";
+    if (error instanceof Error) {
+      message = error.message;
+    }
+    res.status(500).json({ message });
   }
 };
 
@@ -49,7 +57,11 @@ export const updateUser = async (req: Request, res: Response) => {
     }
     res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    let message;
+    if (error instanceof Error) {
+      message = error.message;
+    }
+    res.status(500).json({ message });
   }
 };
 
@@ -64,6 +76,10 @@ export const deleteUser = async (req: Request, res: Response) => {
     }
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    let message = "Some error occurred while deleting user";
+    if (error instanceof Error) {
+      message = error.message;
+    }
+    res.status(500).json({ message });
   }
 };
