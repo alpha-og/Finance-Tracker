@@ -1,7 +1,7 @@
 import express from "express";
 import transactionSchema from "../models/transaction";
 
-exports.transaction_post = async (
+const createTransaction = async (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction,
@@ -26,4 +26,4 @@ exports.transaction_post = async (
     });
 };
 
-// export default { transaction_post };
+export { createTransaction};

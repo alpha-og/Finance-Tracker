@@ -1,14 +1,17 @@
 import express from "express";
+import {
+  getTransactions,
+  getTransaction,
+  createTransaction,
+  deleteTransaction,
+  updateTransaction,
+} from "../controllers/transaction-controller";
 
 export const Router = express.Router();
 
 Router.route("/transaction/:id")
-  .get((req, res) => {
-    res.send(req.params);
-  })
-  .post()
-  .put()
-  .delete();
-Router.route("/transactions").get((req, res) => {
-  res.send("All transactions");
-});
+  .get(getTransaction)
+  .post(createTransaction)
+  .put(updateTransaction)
+  .delete(deleteTransaction);
+Router.route("/transactions").get(getTransactions);
