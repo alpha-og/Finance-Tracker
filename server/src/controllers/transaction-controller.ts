@@ -2,16 +2,20 @@ import express from "express";
 import transactionSchema from "../models/transaction";
 import User from "../models/user-model";
 
-exports.transaction = async (
+exports.createTransaction = async (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction,
 ) => {
   const { user_id, amount, desc } = req.body;
   try {
-    const user = await User.find({ _id: user_id });
+    const user = await User.findById(user_id, (err, docs) => {
+      if (err) {
+        res.status(500).send(err.message);
+      }
+    });
     const data = new transactionSchema({
-      user: user[0]._id,
+      user: user_id,
       amount: amount,
       description: desc,
     });
