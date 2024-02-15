@@ -8,7 +8,8 @@ client/.pnp
 
 # testing
 /coverage
-
+.envrc
+configs.env
 # next.js
 client/.next/
 client/out/
