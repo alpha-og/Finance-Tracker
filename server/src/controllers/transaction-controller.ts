@@ -1,5 +1,5 @@
 import express from "express";
-import transactionSchema from "../models/transaction";
+import transactionSchema from "../models/transaction-model";
 import User from "../models/user-model";
 
 const createTransaction = async (
