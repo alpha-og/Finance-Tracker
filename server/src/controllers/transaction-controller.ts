@@ -1,6 +1,6 @@
 import express from "express";
 import transactionSchema from "../models/transaction";
-import User from "../models/User";
+import User from "../models/user-model";
 
 exports.transaction_post = async (
   req: express.Request,
@@ -11,7 +11,7 @@ exports.transaction_post = async (
   try {
     const user = await User.find({ _id: user_id });
     const data = new transactionSchema({
-      user: user,
+      user: user[0]._id,
       amount: amount,
       description: desc,
     });
