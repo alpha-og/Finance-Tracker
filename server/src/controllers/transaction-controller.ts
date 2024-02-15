@@ -2,14 +2,14 @@ import express from "express";
 import transactionSchema from "../models/transaction";
 import User from "../models/user-model";
 
-exports.createTransaction = async (
+const createTransaction = async (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction,
 ) => {
   const { user_id, amount, desc } = req.body;
   try {
-    const user = await User.findById(user_id, (err, docs) => {
+    const user = await User.findById(user_id, (err: Error, docs: string) => {
       if (err) {
         res.status(500).send(err.message);
       }
@@ -28,4 +28,44 @@ exports.createTransaction = async (
     }
     res.status(500).send("server error");
   }
+};
+
+const getTransactions = async (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
+) => {
+  res.send("Hello world");
+};
+
+const getTransaction = async (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
+) => {
+  res.send("Hello world");
+};
+
+const deleteTransaction = async (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
+) => {
+  res.send("Hello world");
+};
+
+const updateTransaction = async (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
+) => {
+  res.send("Hello world");
+};
+
+export {
+  getTransaction,
+  getTransactions,
+  createTransaction,
+  deleteTransaction,
+  updateTransaction,
 };
