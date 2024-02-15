@@ -1,4 +1,5 @@
 import mongoose, { Document } from "mongoose";
+import User from "./User";
 
 export interface TransactionModel extends Document {
   user: string;
