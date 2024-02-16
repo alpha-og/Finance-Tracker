@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import User from "../models/user-model";
 
-export const getUserById = async (req: Request, res: Response) => {
+export const getUser = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
