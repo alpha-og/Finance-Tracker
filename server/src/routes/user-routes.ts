@@ -13,3 +13,7 @@ Router.route("/user")
   .get(getUser)
   .put(updateUser)
   .delete(deleteUser);
+
+// {username: John, email: john@example, password: 1234}
+// {username: Jojo, email: jojo@gmail.com, password: 18}
+// {username: Newman email: newman@gmail, password: 140380}
