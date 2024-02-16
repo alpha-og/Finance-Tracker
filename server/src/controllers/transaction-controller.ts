@@ -7,13 +7,13 @@ const createTransaction = async (
   res: express.Response,
   next: express.NextFunction,
 ) => {
-  const { user, amount, desc } = req.body;
+  const { user, amount, description } = req.body;
   try {
     const user_ = await User.findById(user);
     const newTransaction = new transactionSchema({
       user: user,
       amount: amount,
-      description: desc,
+      description: description,
     });
     await newTransaction.save();
     res.status(201).send("Transaction saved");
