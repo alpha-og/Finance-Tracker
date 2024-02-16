@@ -31,9 +31,11 @@ const getTransactions = async (
   res: express.Response,
   next: express.NextFunction,
 ) => {
-  const { user } = req.body;
+  const user = req.params.id;
   try {
-    const transactions = await transactionSchema.find({ user: user });
+    const user_ = await User.findById(user);
+    if (!user_) res.status(404).send("User not found");
+    const transactions = await transactionSchema.findOne({ user: user });
     res.status(200).send(transactions);
   } catch (err) {
     if (err instanceof Error) res.status(500).send(err.message);
@@ -65,6 +67,7 @@ const deleteTransaction = async (
   try {
     if (!transId) res.status(404).send("Transaction not found");
     const transaction_ = await transactionSchema.findById(transId);
+    console.log(transaction_);
     if (!transaction_) res.status(404).send("Transaction not found");
     const transaction = await transactionSchema.deleteOne({ _id: transId });
     if (transaction.deletedCount === 0) {

@@ -1,1 +1,3 @@
-DELETE http://localhost:2000/api/v1/transaction/65cf8e30d5fc157d6eaa58e1
+# DELETE http://localhost:2000/api/v1/transactior/65cf8e30d5fc157d6eaa58e1
+GET http://localhost:2000/api/v1/transactions/65cf86b3f1c0f913afddfc3d
+
