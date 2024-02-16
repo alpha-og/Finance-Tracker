@@ -84,13 +84,13 @@ const updateTransaction = async (
   res: express.Response,
   next: express.NextFunction,
 ) => {
-  const { user, amount, desc, id } = req.body;
+  const { user, amount, description, id } = req.body;
   try {
     const user_trans = await User.findById(user);
     if (!user_trans) res.send(404).send("User not found");
     const transaction = await transactionSchema.updateOne(
       { _id: id },
-      { amount: amount, description: desc },
+      { amount: amount, description: description },
     );
     res.status(200).send("Updated successfully");
   } catch (err) {
