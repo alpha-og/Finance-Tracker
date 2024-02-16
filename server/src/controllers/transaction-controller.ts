@@ -61,11 +61,15 @@ const deleteTransaction = async (
   res: express.Response,
   next: express.NextFunction,
 ) => {
-  const transId = req.body.id;
+  const transId = req.params.id;
   try {
-    const transaction = await transactionSchema.deleteOne({
-      _id: transId,
-    });
+    if (!transId) res.status(404).send("Transaction not found");
+    const transaction_ = await transactionSchema.findById(transId);
+    if (!transaction_) res.status(404).send("Transaction not found");
+    const transaction = await transactionSchema.deleteOne({ _id: transId });
+    if (transaction.deletedCount === 0) {
+      res.status(404).send("Transaction not found");
+    }
     res.status(200).send("Transaction deleted");
   } catch (err) {
     if (err instanceof Error) res.status(500).send(err.message);
