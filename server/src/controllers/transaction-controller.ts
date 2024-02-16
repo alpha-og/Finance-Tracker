@@ -65,9 +65,8 @@ const deleteTransaction = async (
 ) => {
   const transId = req.params.id;
   try {
-    if (!transId) res.status(404).send("Transaction not found");
+    if (!transId) res.status(404).send("Please provide a transaction id");
     const transaction_ = await transactionSchema.findById(transId);
-    console.log(transaction_);
     if (!transaction_) res.status(404).send("Transaction not found");
     const transaction = await transactionSchema.deleteOne({ _id: transId });
     if (transaction.deletedCount === 0) {
@@ -87,8 +86,10 @@ const updateTransaction = async (
 ) => {
   const { user, amount, desc, id } = req.body;
   try {
+    const user_trans = await User.findById(user);
+    if (!user_trans) res.send(404).send("User not found");
     const transaction = await transactionSchema.updateOne(
-      { _id: id, user: user },
+      { _id: id },
       { amount: amount, description: desc },
     );
     res.status(200).send("Updated successfully");
