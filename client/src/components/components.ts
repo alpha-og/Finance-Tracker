@@ -1,2 +1,3 @@
 import Navbar from "./Navbar";
-export { Navbar };
+import Input from "./Input";
+export { Navbar, Input };

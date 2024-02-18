@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { Input } from "@/components/components";
 
 export default function Signin() {
   return (
@@ -10,16 +11,8 @@ export default function Signin() {
         Sign in
       </h1>
       <form className="w-full flex flex-col justify-center items-center gap-4 text-sm sm:text-md ease-in-out duration-300">
-        <input
-          type="email"
-          placeholder="Your email address..."
-          className="w-full h-12 p-4 bg-neutral-800 outline-none rounded-lg focus:ring-1 focus:ring-white ease-in-out duration-300"
-        />
-        <input
-          type="password"
-          placeholder="Type in your password..."
-          className="w-full h-12 p-4 bg-neutral-800 outline-none rounded-lg focus:ring-1 focus:ring-white ease-in-out duration-300"
-        />
+        <Input type="email" placeholder="Your email address..." />
+        <Input type="password" placeholder="Type in your password..." />
         <button
           type="submit"
           className="w-full max-h-12 p-2 text-lg text-neutral-950 font-bold bg-white rounded-lg focus:ring-white hover:bg-blue-500 hover:text-white duration-300"
