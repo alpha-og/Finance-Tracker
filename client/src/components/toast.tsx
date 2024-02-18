@@ -39,10 +39,7 @@ const Toast = ({
         <h1 className="text-sm font-bold">{title}</h1>
         <p className="text-sm">{message}</p>
       </div>
-      <button
-        onClick={() => setVisibility("hidden")}
-        className="-mt-5 -mr-2 text-red-500 ease-in-out duration-300"
-      >
+      <button onClick={() => setVisibility("hidden")}>
         <MdClose className="w-6 h-6 aspect-square ease-in-out duration-300" />
       </button>
     </div>
