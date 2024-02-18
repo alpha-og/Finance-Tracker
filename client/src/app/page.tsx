@@ -1,6 +1,3 @@
-import Image from "next/image";
-import add_transaction from "@/components/transaction-updater";
-
 export default function Home() {
   return (
     <>
