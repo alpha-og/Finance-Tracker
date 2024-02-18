@@ -42,7 +42,7 @@ const getTransactions = async (
     try {
         const user_check = await User.findById(user);
         if (!user_check) res.status(404).send({ message: "User not found" });
-        const transactions = await transactionSchema.findOne({ user: user });
+        const transactions = await transactionSchema.find({ user: user });
         res.status(200).send(transactions);
     } catch (err) {
         if (err instanceof Error) res.status(500).send(err.message);
