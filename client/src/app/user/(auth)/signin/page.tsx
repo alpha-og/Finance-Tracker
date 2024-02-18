@@ -5,14 +5,14 @@ import { Button, Input } from "@/components/components";
 
 export default function Signin() {
   return (
-    <div className="w-80 sm:w-[28rem] h-3/4 p-8 sm:p-12 flex flex-col justify-center items-center gap-8 bg-neutral-950 rounded-lg shadow-lg shadow-black ease-in-out duration-300">
+    <div className="w-80 sm:w-[28rem] min-h-3/4 p-8 sm:p-12 flex flex-col justify-center items-center gap-8 bg-neutral-950 rounded-lg shadow-lg shadow-black ease-in-out duration-300">
       <FaUserCircle className="w-14 sm:w-16 h-14 sm:h-16 flex-shrink-0 flex-grow-0 ease-in-out duration-300" />
       <h1 className="w-full text-3xl sm:text-4xl text-center text-white font-bold ease-in-out duration-300">
         Sign in
       </h1>
       <form className="w-full flex flex-col justify-center items-center gap-4 text-sm sm:text-md ease-in-out duration-300">
-        <Input type="email" placeholder="Your email address..." />
-        <Input type="password" placeholder="Type in your password..." />
+        <Input type="email" placeholder="Email" />
+        <Input type="password" placeholder="Password" />
         <Button type="submit">Sign in</Button>
         <Button type="submit">
           <FcGoogle size={28} />
