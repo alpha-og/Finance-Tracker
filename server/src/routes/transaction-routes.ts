@@ -9,6 +9,9 @@ import {
 
 export const Router = express.Router();
 
-Router.route("/transaction/:id").get(getTransaction).delete(deleteTransaction);
-Router.route("/transaction").post(createTransaction).put(updateTransaction);
-Router.route("/transactions/:id").get(getTransactions);
+Router.route("/transaction/:id")
+  .get(getTransaction)
+  .put(updateTransaction)
+  .delete(deleteTransaction);
+Router.route("/transaction").post(createTransaction);
+Router.route("/transactions/:user_id").get(getTransactions);

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "../components/components";
-import TransactionForm from "../components/TransactionForm";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,17 +10,20 @@ export const metadata: Metadata = {
   description: "Track your finances",
 };
 
- export default function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + " w-screen h-screen text-white"}>
+      <body
+        className={
+          inter.className + " w-screen h-screen flex flex-col text-white"
+        }
+      >
         <Navbar />
         {children}
-        <TransactionForm/>
       </body>
     </html>
   );
