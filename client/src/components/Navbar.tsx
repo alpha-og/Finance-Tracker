@@ -4,7 +4,7 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 
 export default function Navbar() {
   return (
-    <nav className="absolute w-full flex justify-between items-center p-4 text-white bg-neutral-950">
+    <nav className="w-full flex justify-between items-center p-4 text-white bg-neutral-950">
       <Link href="/">
         <MdOutlineAttachMoney size={24} />
       </Link>
