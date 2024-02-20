@@ -2,84 +2,85 @@ import { Request, Response } from "express";
 import User from "../models/user-model";
 
 export const getUser = async (req: Request, res: Response) => {
-  const { id } = req.body;
+  const { id } = req.params;
 
   try {
     const user = await User.findById(id);
-    console.log(user);
     if (!user) {
-      res.status(404).json({ message: "User not found" });
-      return;
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
-    res.status(200).json(user);
+    return res.status(200).json({ success: true, user });
   } catch (error) {
     let message = "Some error occurred while fetching user";
     if (error instanceof Error) {
       message = error.message;
     }
-    res.status(500).json({ message });
+    return res.status(500).json({ success: false, message });
   }
 };
 
 export const createUser = async (req: Request, res: Response) => {
-  const { username, email, password } = req.body;
+  const user = req.body;
 
   try {
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email: user.email });
     if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
+      return res
+        .status(400)
+        .json({ success: false, message: "User already exists" });
     }
 
-    const newUser = new User({ username, email, password });
+    const newUser = new User(user);
     await newUser.save();
-    res.status(201).json(newUser);
+    return res.status(201).json({ success: true, user: newUser });
   } catch (error) {
     let message = "Some error occurred while creating user";
     if (error instanceof Error) {
       message = error.message;
     }
-    res.status(500).json({ message });
+    return res.status(500).json({ success: false, message });
   }
 };
 
 export const updateUser = async (req: Request, res: Response) => {
-  const { id, username, email, password } = req.body;
+  const { id } = req.params;
+  const updatedUser = req.body;
 
   try {
-    const user = await User.findByIdAndUpdate(
-      id,
-      { username, email, password },
-      { new: true },
-    );
+    const user = await User.findByIdAndUpdate(id, updatedUser, { new: true });
     if (!user) {
-      res.status(404).json({ message: "User not found" });
-      return;
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
-    res.status(200).json(user);
+    return res.status(200).json({ success: true, user });
   } catch (error) {
     let message;
     if (error instanceof Error) {
       message = error.message;
     }
-    res.status(500).json({ message });
+    res.status(500).json({ success: false, message });
   }
 };
 
 export const deleteUser = async (req: Request, res: Response) => {
-  const { id } = req.body;
+  const { id } = req.params;
 
   try {
     const user = await User.findByIdAndDelete(id);
     if (!user) {
-      res.status(404).json({ message: "User not found" });
-      return;
+      return res
+        .status(404)
+        .json({ success: false, message: "User does not exist" });
     }
-    res.status(200).json({ message: "User deleted successfully" });
+    return res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     let message = "Some error occurred while deleting user";
     if (error instanceof Error) {
       message = error.message;
     }
-    res.status(500).json({ message });
+    return res.status(500).json({ message });
   }
 };
